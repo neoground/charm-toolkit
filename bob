@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+#
+# Bob Command
+#
+# Create new charm instances,
+# Provide easy access to Bob CLI
+
+# Set default PHP executable paths
+PHP_PATHS=( "php" "/usr/bin/php" "/usr/local/bin/php" "/opt/plesk/php/8.1/bin/php" )
+
+# Find first available PHP executable path
+PHP_PATH=""
+for path in "${PHP_PATHS[@]}"; do
+    if command -v "$path" >/dev/null 2>&1; then
+        PHP_PATH="$path"
+        break
+    fi
+done
+
+# Check if PHP executable was found
+if [ -z "$PHP_PATH" ]; then
+    echo "Error: PHP executable not found."
+    exit 1
+fi
+
+# Check if Composer is installed
+if ! command -v composer &> /dev/null
+then
+    echo "Composer could not be found. Please install Composer and try again."
+    exit 1
+fi
+
+# Create new project
+if [ "$1" == "new" ]; then
+    echo '
+
+ ██████ ██   ██  █████  ██████  ███    ███
+██      ██   ██ ██   ██ ██   ██ ████  ████
+██      ███████ ███████ ██████  ██ ████ ██
+██      ██   ██ ██   ██ ██   ██ ██  ██  ██
+ ██████ ██   ██ ██   ██ ██   ██ ██      ██
+
+
+Welcome to the Charm PHP Framework!
+
+The Charm PHP Framework is a special PHP framework that'\''s optimized for APIs and business web apps. It'\''s faster and slimmer than other PHP frameworks, making it the perfect choice for developers who need high-performance software that can handle complex business logic.
+
+Get started with the Charm PHP Framework today and see what you can build!
+Let'\''s go!
+'
+
+    echo " "
+    echo "New project: $2"
+    echo " "
+
+    # Create new project directory
+    mkdir "$1"
+
+    # Clone Charm wireframe
+    git clone --depth 1 https://github.com/neoground/charm-wireframe.git "$1"
+
+    # Navigate to the new project directory
+    cd "$1"
+
+    # Create required directories and set permissions
+    mkdir -p var/cache var/logs data app/Config/Environments
+    chmod -R 0777 var/cache var/logs data
+
+    # Install dependencies using Composer
+    composer install
+
+    # Create local environment
+    "$PHP_PATH" bob.php c:env
+
+    # TODO Auto-suggest / adjust webserver config
+    if [ -d "/etc/apache2" ]; then
+      echo "Detected apache2: You might need to adjust your webserver or the .htaccess in your new project."
+    fi
+    if [ -d "/etc/nginx" ]; then
+      echo "Detected nginx: You might need to adjust your webserver. See the nginx.conf in your new project."
+    fi
+
+    echo "Charm PHP Framework installation complete. You can now navigate to https://localhost/path/to/$1 to view the hello world message."
+
+    exit 0
+fi
+
+# Check if file exists
+if [ -f "bob.php" ]; then
+    # Call PHP script with arguments
+     "$PHP_PATH" "bob.php" "${@:2}"
+    exit 0
+fi
+
+echo "Error: bob.php not found."
+exit 1
