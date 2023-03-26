@@ -5,6 +5,13 @@
 # Create new charm instances,
 # Provide easy access to Bob CLI
 
+# Define colors for fancy output
+GREEN="\033[32m"
+YELLOW="\033[33m"
+MAGENTA="\033[35m"
+CYAN="\033[36m"
+RESET="\033[0m"
+
 # Set default PHP executable paths
 PHP_PATHS=( "php" "/usr/bin/php" "/usr/local/bin/php" "/opt/plesk/php/8.1/bin/php" )
 
@@ -35,52 +42,53 @@ fi
 
 # Create new project
 if [ "$1" == "new" ]; then
-    echo '
-
- ██████ ██   ██  █████  ██████  ███    ███
-██      ██   ██ ██   ██ ██   ██ ████  ████
-██      ███████ ███████ ██████  ██ ████ ██
-██      ██   ██ ██   ██ ██   ██ ██  ██  ██
- ██████ ██   ██ ██   ██ ██   ██ ██      ██
-
-
-Welcome to the Charm PHP Framework!
-
-The Charm PHP Framework is a special PHP framework
-that'\''s optimized for APIs and business web apps.
-It'\''s faster and slimmer than other PHP frameworks,
-making it the perfect choice for developers who
-need high-performance software that can handle
-complex business logic.
-
-Get started with the Charm PHP Framework today
-and see what you can build! Let'\''s go!'
+    echo -e "${MAGENTA} ██████ ██   ██  █████  ██████  ███    ███"
+    echo -e "${MAGENTA}██      ██   ██ ██   ██ ██   ██ ████  ████"
+    echo -e "${MAGENTA}██      ███████ ███████ ██████  ██ ████ ██"
+    echo -e "${MAGENTA}██      ██   ██ ██   ██ ██   ██ ██  ██  ██"
+    echo -e "${MAGENTA} ██████ ██   ██ ██   ██ ██   ██ ██      ██${RESET}"
+    echo " "
+    echo -e "${CYAN}Welcome to the Charm PHP Framework!${RESET}"
+    echo " "
+    echo -e "The Charm PHP Framework is a special PHP framework"
+    echo -e "that's optimized for APIs and business web apps."
+    echo -e "It's faster and slimmer than other PHP frameworks,"
+    echo -e "making it the perfect choice for developers who"
+    echo -e "need high-performance software that can handle"
+    echo -e "complex business logic."
+    echo " "
+    echo -e "Get started with the Charm PHP Framework today"
+    echo -e "and see what you can build! Let's go!'"
 
     echo " "
-    echo "Creating new project: $2..."
+    echo " "
+    echo "${CYAN}Creating new project: $2 ${RESET}"
     echo " "
 
     # Create new project directory
     mkdir "$1"
 
     # Clone Charm wireframe
-    echo -e "Cloning charm-wireframe..."
+    echo -ne "[..] Cloning charm-wireframe...\r"
     git clone --depth 1 --quiet https://github.com/neoground/charm-wireframe.git "$1"
+    echo -ne "${GREEN}[OK]${RESET} Cloned charm-wireframe     \n"
 
     # Navigate to the new project directory
-    cd "$1"
+    cd "$1" || exit 1
 
     # Create required directories and set permissions
-    echo -e "Creating directory structure..."
+    echo -ne "[..] Creating directory structure...\r"
     mkdir -p var/cache var/logs data app/Config/Environments
     chmod -R 0777 var/cache var/logs data
+    echo -ne "${GREEN}[OK]${RESET} Created directory structure     \n"
 
     # Install dependencies using Composer
-    echo -e "Installing composer packages..."
+    echo -ne "[..] Installing composer packages...\r"
     composer -n -q update
+    echo -ne "${GREEN}[OK]${RESET} Installed composer packages     \n"
 
     # Update main config
-    echo -e "Updating config..."
+    echo -ne "[..] Updating config...\r"
     sed -i 's/^ *name: charm-bbq$/  name: '"$1-bbq"'/' app/Config/main.yaml
     sed -i "s/^ *name: charm$/  name: '$1'/" app/Config/main.yaml
     timezone=$(cat /etc/timezone)
@@ -92,13 +100,16 @@ and see what you can build! Let'\''s go!'
     # Update connections config
     sed -i "s/  database:.*/  database:  '$1'/" app/Config/connections.yaml
     sed -i "s/prefix:.*/prefix:   '$1_'/" app/Config/connections.yaml
+    
+    echo -ne "${GREEN}[OK]${RESET} Updated config     \n"
 
-    echo -e "Project created."
+    echo " "
+    echo -e "${GREEN}[OK]${RESET} Project created!"
+    echo " "
 
     # Create local environment
     "$PHP_PATH" bob.php c:env Local
 
-    # TODO Auto-suggest / adjust webserver config
     if [ -d "/etc/apache2" ]; then
       echo " "
       echo -e "🌐 Apache2 detected. You might need to adjust your webserver or"
@@ -121,7 +132,7 @@ and see what you can build! Let'\''s go!'
     echo " "
     echo -e "📡 Alternatively, unleash the power of ${GREEN}bob serve${RESET}"
     echo -e "   to create a local development environment accessible at"
-    echo -e "   ${GREEN}https://localhost:8000"${RESET}
+    echo -e "   ${GREEN}https://localhost:8000${RESET}"
     echo " "
 
     exit 0
@@ -133,15 +144,6 @@ if [ -f "bob.php" ]; then
      "$PHP_PATH" "bob.php" "${@:2}"
     exit 0
 fi
-
-#!/bin/bash
-
-# Define colors for fancy output
-GREEN="\033[32m"
-YELLOW="\033[33m"
-MAGENTA="\033[35m"
-CYAN="\033[36m"
-RESET="\033[0m"
 
 # Print the help text with color output
 echo -e "${MAGENTA}Welcome to Bob, the Intergalactic Charm Framework Toolkit!${RESET}"
