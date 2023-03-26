@@ -57,26 +57,30 @@ Get started with the Charm PHP Framework today
 and see what you can build! Let'\''s go!'
 
     echo " "
-    echo "New project: $2"
+    echo "Creating new project: $2..."
     echo " "
 
     # Create new project directory
     mkdir "$1"
 
     # Clone Charm wireframe
-    git clone --depth 1 https://github.com/neoground/charm-wireframe.git "$1"
+    echo -e "Cloning charm-wireframe..."
+    git clone --depth 1 --quiet https://github.com/neoground/charm-wireframe.git "$1"
 
     # Navigate to the new project directory
     cd "$1"
 
     # Create required directories and set permissions
+    echo -e "Creating directory structure..."
     mkdir -p var/cache var/logs data app/Config/Environments
     chmod -R 0777 var/cache var/logs data
 
     # Install dependencies using Composer
-    composer install
+    echo -e "Installing composer packages..."
+    composer install -nq
 
     # Update main config
+    echo -e "Updating config..."
     sed -i 's/^ *name: charm-bbq$/  name: '"$1-bbq"'/' app/Config/main.yaml
     sed -i "s/^ *name: charm$/  name: '$1'/" app/Config/main.yaml
     timezone=$(cat /etc/timezone)
@@ -88,6 +92,8 @@ and see what you can build! Let'\''s go!'
     # Update connections config
     sed -i "s/  database:.*/  database:  '$1'/" app/Config/connections.yaml
     sed -i "s/prefix:.*/prefix:   '$1_'/" app/Config/connections.yaml
+
+    echo -e "Project created."
 
     # Create local environment
     "$PHP_PATH" bob.php c:env --name="Local"
