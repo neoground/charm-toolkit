@@ -75,15 +75,16 @@ and see what you can build! Let'\''s go!'
 
     # Update main config
     sed -i 's/^ *name: charm-bbq$/  name: '"$1-bbq"'/' app/Config/main.yaml
-    sed -i 's/^ *name: charm$/  name: '"$1"'/' app/Config/main.yaml
-    sed -i "s/base_path:.*/  base_path: $(pwd)/" app/Config/main.yaml
-    sed -i "s/timezone:.*/  timezone: $(cat /etc/timezone)/" app/Config/main.yaml
-    sed -i "s/language:.*/  language: $LANG/" app/Config/main.yaml
-    sed -i "s/auth_salt:.*/  auth_salt: '$(openssl rand -base64 29 | tr -d "=+/" | cut -c1-25)'/" app/Config/main.yaml
+    sed -i "s/^ *name: charm$/  name: '$1'/" app/Config/main.yaml
+    timezone=$(cat /etc/timezone)
+    timezone="${timezone//@/\\@}"
+    sed -i "s@timezone:.*@timezone: '$timezone'@g" app/Config/main.yaml
+    sed -i "s/language:.*/language: $LANG/" app/Config/main.yaml
+    sed -i "s/auth_salt:.*/auth_salt: '$(openssl rand -base64 29 | tr -d "=+/" | cut -c1-25)'/" app/Config/main.yaml
 
     # Update connections config
-    sed -i "s/  database:.*/  database: '$1'/" app/Config/connections.yaml
-    sed -i "s/prefix:.*/  prefix: '$1_'/" app/Config/connections.yaml
+    sed -i "s/  database:.*/  database:  '$1'/" app/Config/connections.yaml
+    sed -i "s/prefix:.*/prefix:   '$1_'/" app/Config/connections.yaml
 
     # Create local environment
     "$PHP_PATH" bob.php c:env --name="Local"
