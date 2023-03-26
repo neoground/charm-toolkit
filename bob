@@ -70,11 +70,13 @@ Let'\''s go!
     composer install
 
     # Update main config
+    AUTHSALT=$(tr -dc 'A-Za-z0-9!#%&()*+,-.:;<=>?@[]_{|}' </dev/urandom | head -c 32)
     sed -i 's/^ *name: charm-bbq$/  name: '"$1-bbq"'/' app/Config/main.yaml
     sed -i 's/^ *name: charm$/  name: '"$1"'/' app/Config/main.yaml
     sed -i "s/base_path:.*/  base_path: $(pwd)/" app/Config/main.yaml
     sed -i "s/timezone:.*/  timezone: $(cat /etc/timezone)/" app/Config/main.yaml
     sed -i "s/language:.*/  language: $LANG/" app/Config/main.yaml
+    sed -i "s/auth_salt:.*/  auth_salt: '$(tr -dc 'A-Za-z0-9!#%&()*+,-.:;<=>?@[]_{|}' </dev/urandom | head -c 32)'/" app/Config/main.yaml
 
     # Create local environment
     "$PHP_PATH" bob.php c:env --name="Local"
