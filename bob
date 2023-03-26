@@ -75,7 +75,11 @@ Let'\''s go!
     sed -i "s/base_path:.*/  base_path: $(pwd)/" app/Config/main.yaml
     sed -i "s/timezone:.*/  timezone: $(cat /etc/timezone)/" app/Config/main.yaml
     sed -i "s/language:.*/  language: $LANG/" app/Config/main.yaml
-    sed -i "s/auth_salt:.*/  auth_salt: '$(tr -dc 'A-Za-z0-9!#%&()*+,-.:;<=>?@[]_{|}' </dev/urandom | head -c 32)'/" app/Config/main.yaml
+    sed -i "s/auth_salt:.*/  auth_salt: '$(openssl rand -base64 29 | tr -d "=+/" | cut -c1-25)'/" app/Config/main.yaml
+
+    # Update connections config
+    sed -i "s/  database:.*/  database: '$1'/" app/Config/connections.yaml
+    sed -i "s/prefix:.*/  prefix: '$1_'/" app/Config/connections.yaml
 
     # Create local environment
     "$PHP_PATH" bob.php c:env --name="Local"
@@ -100,5 +104,35 @@ if [ -f "bob.php" ]; then
     exit 0
 fi
 
-echo "Error: bob.php not found."
-exit 1
+#!/bin/bash
+
+# Define colors for fancy output
+GREEN="\033[32m"
+YELLOW="\033[33m"
+MAGENTA="\033[35m"
+CYAN="\033[36m"
+RESET="\033[0m"
+
+# Print the help text with color output
+echo -e "${MAGENTA}Welcome to BOB, the Intergalactic Charm Framework Toolkit!${RESET}"
+echo ""
+echo -e "In a galaxy far, far away, BOB is your trusty droid companion, here to assist you with your Charm Framework projects."
+echo ""
+echo -e "${YELLOW}Usage:${RESET}"
+echo -e "  ${GREEN}bob command [arguments] [options]${RESET}"
+echo ""
+echo -e "  When in a Charm project, BOB will execute the CLI command \"command\" for this project, passing along arguments and options like a loyal astromech."
+echo ""
+echo -e "${YELLOW}Create a new Charm project:${RESET}"
+echo -e "  ${GREEN}bob new <project-name>${RESET}"
+echo ""
+echo -e "  Command your own Millennium Falcon! BOB will create a new directory named \"<project-name>\", containing a fresh Charm project based on the charm-wireframe."
+echo ""
+echo -e "${YELLOW}Example:${RESET}"
+echo -e "  ${GREEN}bob new LightSpeeder${RESET}"
+echo ""
+echo -e "  This will initialize a new Charm project called \"LightSpeeder\" in a directory named \"LightSpeeder\"."
+echo ""
+echo -e "${CYAN}May the Force be with you on your journey through the vast universe of web development with Charm Framework and BOB by your side!${RESET}"
+echo ""
+exit 0
