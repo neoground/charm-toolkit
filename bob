@@ -102,15 +102,15 @@ if [ "$1" == "new" ]; then
     echo " "
 
     # Create new project directory
-    mkdir "$1"
+    mkdir "$2"
 
     # Clone Charm wireframe
     echo -ne "[..] Cloning charm-wireframe...\r"
-    git clone --depth 1 --quiet https://github.com/neoground/charm-wireframe.git "$1"
+    git clone --depth 1 --quiet https://github.com/neoground/charm-wireframe.git "$2"
     echo -ne "${GREEN}[OK]${RESET} Cloned charm-wireframe     \n"
 
     # Navigate to the new project directory
-    cd "$1" || exit 1
+    cd "$2" || exit 1
 
     # Create required directories and set permissions
     echo -ne "[..] Creating directory structure...\r"
@@ -125,8 +125,8 @@ if [ "$1" == "new" ]; then
 
     # Update main config
     echo -ne "[..] Updating config...\r"
-    sed -i 's/^ *name: charm-bbq$/  name: '"$1-bbq"'/' app/Config/main.yaml
-    sed -i "s/^ *name: charm$/  name: '$1'/" app/Config/main.yaml
+    sed -i 's/^ *name: charm-bbq$/  name: '"$2-bbq"'/' app/Config/main.yaml
+    sed -i "s/^ *name: charm$/  name: '$2'/" app/Config/main.yaml
     timezone=$(cat /etc/timezone)
     timezone="${timezone//@/\\@}"
     sed -i "s@timezone:.*@timezone: '$timezone'@g" app/Config/main.yaml
@@ -134,8 +134,8 @@ if [ "$1" == "new" ]; then
     sed -i "s/auth_salt:.*/auth_salt: '$(openssl rand -base64 29 | tr -d "=+/" | cut -c1-25)'/" app/Config/main.yaml
 
     # Update connections config
-    sed -i "s/  database:.*/  database:  '$1'/" app/Config/connections.yaml
-    sed -i "s/prefix:.*/prefix:   '$1_'/" app/Config/connections.yaml
+    sed -i "s/  database:.*/  database:  '$2'/" app/Config/connections.yaml
+    sed -i "s/prefix:.*/prefix:   '$2_'/" app/Config/connections.yaml
     
     echo -ne "${GREEN}[OK]${RESET} Updated config     \n"
 
@@ -163,7 +163,7 @@ if [ "$1" == "new" ]; then
     echo -e "✅ ${GREEN}The Force is strong with this one!"
     echo -e "   The Charm PHP Framework has been successfully installed.${RESET}"
     echo " "
-    echo -e "💻 Your journey begins! Access ${GREEN}https://localhost/path/to/$1${RESET}"
+    echo -e "💻 Your journey begins! Access ${GREEN}https://localhost/path/to/$2${RESET}"
     echo -e "   to view a greeting from a galaxy far, far away."
     echo " "
     echo -e "📡 Alternatively, unleash the power of ${GREEN}bob serve${RESET}"
