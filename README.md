@@ -91,6 +91,54 @@ bob cron:run
 Bob will take care of running the scheduled tasks, 
 just like R2-D2 maintaining the systems of an X-Wing fighter.
 
+### Development Server
+
+The `bob` command-line tool offers an incredibly convenient development server 
+that allows you to quickly run and test your Charm applications. 
+By default, the server is set to run on `localhost` and listens to port `8000`.
+In this section, we'll explore how to use `bob serve` with different parameters to meet your development needs.
+
+This development server is based on PHP's [built-in web server](https://www.php.net/manual/en/features.commandline.webserver.php).
+
+#### Starting the Development Server
+
+To start the development server with default settings, simply navigate to your
+Charm project's root directory and execute the following command:
+
+```sh
+bob serve
+```
+
+This will launch the server on `localhost:8000`. You can now open your favorite browser and visit 
+`http://localhost:8000` to interact with your application.
+
+#### Custom host and port
+
+To specify a custom host, run the following command:
+
+```sh
+bob serve 192.168.0.2
+```
+
+This will start the server on the `192.168.0.2` IP address and the default port `8000`.
+Use `0.0.0.0` to listen on all interfaces.
+
+To specify a custom port, run the following command:
+
+```sh
+bob serve localhost 9000
+```
+
+This will start the server on `localhost` with a custom port `9000`.
+
+To specify both a custom host and port, run the following command:
+
+```sh
+bob serve 10.0.0.2 9000
+```
+
+This will start the server on the `10.0.0.2` IP address and the custom port `9000`.
+
 ### Self-update
 
 In a galaxy far, far away, tools need to stay up to date

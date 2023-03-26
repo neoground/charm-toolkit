@@ -111,6 +111,31 @@ if [ "$1" == "self-update" ]; then
     fi
 fi
 
+# Dev server
+if [ "$1" == "serve" ]; then
+  outputRainbow " ██████ ██   ██  █████  ██████  ███    ███"
+  outputRainbow "██      ██   ██ ██   ██ ██   ██ ████  ████"
+  outputRainbow "██      ███████ ███████ ██████  ██ ████ ██"
+  outputRainbow "██      ██   ██ ██   ██ ██   ██ ██  ██  ██"
+  outputRainbow " ██████ ██   ██ ██   ██ ██   ██ ██      ██"
+  echo " "
+  outputRainbow "Welcome to the Charm PHP Dev Server"
+  echo " "
+  host="localhost"
+  port="8000"
+
+  # Check the number of arguments
+  if [ "$#" -eq 1 ]; then
+      host="$2"
+  elif [ "$#" -eq 2 ]; then
+      host="$2"
+      port="$3"
+  fi
+
+  # Execute the PHP built-in server
+  "$PHP_PATH" -S "$host:$port"
+fi
+
 # Create new project
 if [ "$1" == "new" ]; then
     outputRainbow " ██████ ██   ██  █████  ██████  ███    ███"
