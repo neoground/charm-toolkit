@@ -43,11 +43,15 @@ if [ "$1" == "new" ]; then
 
 Welcome to the Charm PHP Framework!
 
-The Charm PHP Framework is a special PHP framework that'\''s optimized for APIs and business web apps. It'\''s faster and slimmer than other PHP frameworks, making it the perfect choice for developers who need high-performance software that can handle complex business logic.
+The Charm PHP Framework is a special PHP framework
+that'\''s optimized for APIs and business web apps.
+It'\''s faster and slimmer than other PHP frameworks,
+making it the perfect choice for developers who
+need high-performance software that can handle
+complex business logic.
 
-Get started with the Charm PHP Framework today and see what you can build!
-Let'\''s go!
-'
+Get started with the Charm PHP Framework today
+and see what you can build! Let'\''s go!'
 
     echo " "
     echo "New project: $2"
@@ -92,7 +96,8 @@ Let'\''s go!
       echo "Detected nginx: You might need to adjust your webserver. See the nginx.conf in your new project."
     fi
 
-    echo "Charm PHP Framework installation complete. You can now navigate to https://localhost/path/to/$1 to view the hello world message."
+    echo -e "Charm PHP Framework installation complete!"
+    echo -e "You can now navigate to https://localhost/path/to/$1 to view the hello world message."
 
     exit 0
 fi
@@ -116,23 +121,28 @@ RESET="\033[0m"
 # Print the help text with color output
 echo -e "${MAGENTA}Welcome to BOB, the Intergalactic Charm Framework Toolkit!${RESET}"
 echo ""
-echo -e "In a galaxy far, far away, BOB is your trusty droid companion, here to assist you with your Charm Framework projects."
+echo -e "In a galaxy far, far away, BOB is your trusty droid companion,"
+echo -e "here to assist you with your Charm Framework projects."
 echo ""
 echo -e "${YELLOW}Usage:${RESET}"
 echo -e "  ${GREEN}bob command [arguments] [options]${RESET}"
 echo ""
-echo -e "  When in a Charm project, BOB will execute the CLI command \"command\" for this project, passing along arguments and options like a loyal astromech."
+echo -e "  When in a Charm project, BOB will execute the CLI command \"command\""
+echo -e "for this project, passing along arguments and options like a loyal astromech."
 echo ""
 echo -e "${YELLOW}Create a new Charm project:${RESET}"
 echo -e "  ${GREEN}bob new <project-name>${RESET}"
 echo ""
-echo -e "  Command your own Millennium Falcon! BOB will create a new directory named \"<project-name>\", containing a fresh Charm project based on the charm-wireframe."
+echo -e "  Command your own Millennium Falcon! BOB will create a new directory named"
+echo -e "  \"<project-name>\", containing a fresh Charm project based on the charm-wireframe."
 echo ""
 echo -e "${YELLOW}Example:${RESET}"
 echo -e "  ${GREEN}bob new LightSpeeder${RESET}"
 echo ""
-echo -e "  This will initialize a new Charm project called \"LightSpeeder\" in a directory named \"LightSpeeder\"."
+echo -e "  This will initialize a new Charm project called \"LightSpeeder\" in a"
+echo -e "  directory named \"LightSpeeder\"."
 echo ""
-echo -e "${CYAN}May the Force be with you on your journey through the vast universe of web development with Charm Framework and BOB by your side!${RESET}"
+echo -e "${CYAN}May the Force be with you on your journey through the vast"
+echo -e "universe of web development with Charm Framework and BOB by your side!${RESET}"
 echo ""
 exit 0
