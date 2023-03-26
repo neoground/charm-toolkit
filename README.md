@@ -13,7 +13,7 @@ It's so easy to use, even a Wookiee could do it!
 Requirements:
 
 - PHP 8.0 or above
-- Composer available in PATH
+- Composer available in `PATH`
 
 
 ## Getting Started
@@ -29,7 +29,7 @@ To begin your epic journey with Bob, just follow these simple steps:
    ```sh
    wget -O bob https://github.com/neoground/charm-toolkit/raw/main/bob && chmod +x bob
     ```
-3. To use bob globally, move it to `/usr/local/bin/`, which should be in your system's PATH.
+3. To use bob globally, move it to `/usr/local/bin/`, which should be in your system's `PATH`.
     ```sh
    sudo mv bob /usr/local/bin/
     ```
@@ -58,15 +58,15 @@ the Bob Toolkit, making your Charm Framework experience out-of-this-world!
 ### Create a new project
 
 Bob can create new Charm projects faster than a warp-speed 
-Millennium Falcon! To create a new project called "holoarchive" in a 
-subdirectory named "holoarchive", simply run:
+Millennium Falcon! To create a new project called `holoarchive` in a 
+subdirectory named `holoarchive`, simply run:
 
 ```sh
 bob new holoarchive
 ```
 
 Bob will generate all the necessary files and folders for your 
-shiny new "holoarchive" project, and you'll be ready to code in no time.
+shiny new `holoarchive` project, and you'll be ready to code in no time.
 
 ### Accessing console commands
 
