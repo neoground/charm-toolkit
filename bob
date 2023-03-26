@@ -19,14 +19,17 @@ done
 
 # Check if PHP executable was found
 if [ -z "$PHP_PATH" ]; then
-    echo "Error: PHP executable not found."
+    echo -e "❌ I have a bad feeling about this... PHP not found."
+    echo -e "  Ensure PHP is installed and the path is set correctly."
     exit 1
 fi
 
 # Check if Composer is installed
 if ! command -v composer &> /dev/null
 then
-    echo "Composer could not be found. Please install Composer and try again."
+    echo -e "❌ It's a trap! Composer not found."
+    echo -e "  Install Composer and ensure it's available"
+    echo -e "  in your PATH to continue your journey."
     exit 1
 fi
 
@@ -91,14 +94,29 @@ and see what you can build! Let'\''s go!'
 
     # TODO Auto-suggest / adjust webserver config
     if [ -d "/etc/apache2" ]; then
-      echo "Detected apache2: You might need to adjust your webserver or the .htaccess in your new project."
+      echo " "
+      echo -e "ℹ Apache2 detected. You might need to adjust your webserver or"
+      echo -e "  the .htaccess in your new project."
+      echo " "
     fi
     if [ -d "/etc/nginx" ]; then
-      echo "Detected nginx: You might need to adjust your webserver. See the nginx.conf in your new project."
+      echo " "
+      echo -e "ℹ Nginx detected. You might need to adjust your webserver."
+      echo -e "  See the nginx.conf in your new project."
+      echo " "
     fi
 
-    echo -e "Charm PHP Framework installation complete!"
-    echo -e "You can now navigate to https://localhost/path/to/$1 to view the hello world message."
+    echo " "
+    echo -e "✅ ${GREEN}The Force is strong with this one!"
+    echo -e "  The Charm PHP Framework has been successfully installed.${RESET}"
+    echo " "
+    echo -e "💻 Your journey begins! Access ${GREEN}https://localhost/path/to/$1${RESET}"
+    echo -e "  to view a greeting from a galaxy far, far away."
+    echo " "
+    echo -e "🏗 Alternatively, unleash the power of ${GREEN}bob serve${RESET}"
+    echo -e "  to create a local development environment accessible at"
+    echo -e "  ${GREEN}https://localhost:8000"${RESET}
+    echo " "
 
     exit 0
 fi
