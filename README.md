@@ -23,11 +23,11 @@ To begin your epic journey with Bob, just follow these simple steps:
 1. Ensure that you have PHP 8.0 or above and Composer installed and available in your system's `PATH`.
 2. Download `bob` and make `bob` executable:
     ```sh
-   curl -fSsL -o bob https://github.com/neoground/charm-toolkit/raw/main/bob && chmod +x bob
+   curl -fSsL -o bob https://raw.githubusercontent.com/neoground/charm-toolkit/main/bob && chmod +x bob
     ```
    If `curl` is not available on your system, you can also download it with `wget`:
    ```sh
-   wget -O bob https://github.com/neoground/charm-toolkit/raw/main/bob && chmod +x bob
+   wget -O bob https://raw.githubusercontent.com/neoground/charm-toolkit/main/bob && chmod +x bob
     ```
 3. To use bob globally, move it to `/usr/local/bin/`, which should be in your system's `PATH`.
     ```sh
