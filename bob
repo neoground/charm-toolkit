@@ -96,7 +96,7 @@ and see what you can build! Let'\''s go!'
     echo -e "Project created."
 
     # Create local environment
-    "$PHP_PATH" bob.php c:env --name="Local"
+    "$PHP_PATH" bob.php c:env Local
 
     # TODO Auto-suggest / adjust webserver config
     if [ -d "/etc/apache2" ]; then
