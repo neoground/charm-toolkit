@@ -12,6 +12,42 @@ MAGENTA="\033[35m"
 CYAN="\033[36m"
 RESET="\033[0m"
 
+function outputRainbow() {
+  colors=(
+    "\033[31m" # red
+    "\033[32m" # green
+    "\033[33m" # yellow
+    "\033[34m" # blue
+    "\033[35m" # magenta
+    "\033[36m" # cyan
+    "\033[37m" # white
+    "\033[90m" # gray
+    "\033[91m" # bright-red
+    "\033[92m" # bright-green
+    "\033[93m" # bright-yellow
+    "\033[94m" # bright-blue
+    "\033[95m" # bright-magenta
+    "\033[96m" # bright-cyan
+    "\033[97m" # bright-white
+  )
+
+  text=$1
+  lines=()
+  while IFS= read -r line; do
+    lines+=( "$line" )
+  done < <(printf '%s\n' "$text")
+
+  last_color=
+  for line in "${lines[@]}"; do
+    new_color=$(( RANDOM % ${#colors[@]} ))
+    while [[ "$new_color" == "$last_color" ]]; do
+      new_color=$(( RANDOM % ${#colors[@]} ))
+    done
+    last_color=$new_color
+    echo -e "${colors[$new_color]}$line${RESET}"
+  done
+}
+
 # Set default PHP executable paths
 PHP_PATHS=( "php" "/usr/bin/php" "/usr/local/bin/php" "/opt/plesk/php/8.1/bin/php" )
 
@@ -42,13 +78,13 @@ fi
 
 # Create new project
 if [ "$1" == "new" ]; then
-    echo -e "${MAGENTA} ██████ ██   ██  █████  ██████  ███    ███"
-    echo -e "${MAGENTA}██      ██   ██ ██   ██ ██   ██ ████  ████"
-    echo -e "${MAGENTA}██      ███████ ███████ ██████  ██ ████ ██"
-    echo -e "${MAGENTA}██      ██   ██ ██   ██ ██   ██ ██  ██  ██"
-    echo -e "${MAGENTA} ██████ ██   ██ ██   ██ ██   ██ ██      ██${RESET}"
+    outputRainbow " ██████ ██   ██  █████  ██████  ███    ███"
+    outputRainbow "██      ██   ██ ██   ██ ██   ██ ████  ████"
+    outputRainbow "██      ███████ ███████ ██████  ██ ████ ██"
+    outputRainbow "██      ██   ██ ██   ██ ██   ██ ██  ██  ██"
+    outputRainbow " ██████ ██   ██ ██   ██ ██   ██ ██      ██"
     echo " "
-    echo -e "${CYAN}Welcome to the Charm PHP Framework!${RESET}"
+    outputRainbow "Welcome to the Charm PHP Framework!"
     echo " "
     echo -e "The Charm PHP Framework is a special PHP framework"
     echo -e "that's optimized for APIs and business web apps."
@@ -62,7 +98,7 @@ if [ "$1" == "new" ]; then
 
     echo " "
     echo " "
-    echo "${CYAN}Creating new project: $2 ${RESET}"
+    echo -e "${CYAN}Creating new project: $2 ${RESET}"
     echo " "
 
     # Create new project directory
@@ -146,6 +182,12 @@ if [ -f "bob.php" ]; then
 fi
 
 # Print the help text with color output
+outputRainbow " ██████ ██   ██  █████  ██████  ███    ███"
+outputRainbow "██      ██   ██ ██   ██ ██   ██ ████  ████"
+outputRainbow "██      ███████ ███████ ██████  ██ ████ ██"
+outputRainbow "██      ██   ██ ██   ██ ██   ██ ██  ██  ██"
+outputRainbow " ██████ ██   ██ ██   ██ ██   ██ ██      ██"
+echo " "
 echo -e "${MAGENTA}Welcome to Bob, the Intergalactic Charm Framework Toolkit!${RESET}"
 echo ""
 echo -e "In a galaxy far, far away, Bob is your trusty droid companion,"
