@@ -69,8 +69,15 @@ Let'\''s go!
     # Install dependencies using Composer
     composer install
 
+    # Update main config
+    sed -i 's/^ *name: charm-bbq$/  name: '"$1-bbq"'/' app/Config/main.yaml
+    sed -i 's/^ *name: charm$/  name: '"$1"'/' app/Config/main.yaml
+    sed -i "s/base_path:.*/  base_path: $(pwd)/" app/Config/main.yaml
+    sed -i "s/timezone:.*/  timezone: $(cat /etc/timezone)/" app/Config/main.yaml
+    sed -i "s/language:.*/  language: $LANG/" app/Config/main.yaml
+
     # Create local environment
-    "$PHP_PATH" bob.php c:env
+    "$PHP_PATH" bob.php c:env --name="Local"
 
     # TODO Auto-suggest / adjust webserver config
     if [ -d "/etc/apache2" ]; then
