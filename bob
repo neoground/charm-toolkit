@@ -119,7 +119,7 @@ and see what you can build! Let'\''s go!'
     echo -e "💻 Your journey begins! Access ${GREEN}https://localhost/path/to/$1${RESET}"
     echo -e "  to view a greeting from a galaxy far, far away."
     echo " "
-    echo -e "🏗 Alternatively, unleash the power of ${GREEN}bob serve${RESET}"
+    echo -e "📡 Alternatively, unleash the power of ${GREEN}bob serve${RESET}"
     echo -e "  to create a local development environment accessible at"
     echo -e "  ${GREEN}https://localhost:8000"${RESET}
     echo " "
