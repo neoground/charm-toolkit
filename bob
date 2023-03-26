@@ -101,27 +101,27 @@ and see what you can build! Let'\''s go!'
     # TODO Auto-suggest / adjust webserver config
     if [ -d "/etc/apache2" ]; then
       echo " "
-      echo -e "ℹ Apache2 detected. You might need to adjust your webserver or"
-      echo -e "  the .htaccess in your new project."
+      echo -e "🌐 Apache2 detected. You might need to adjust your webserver or"
+      echo -e "   the .htaccess in your new project."
       echo " "
     fi
     if [ -d "/etc/nginx" ]; then
       echo " "
-      echo -e "ℹ Nginx detected. You might need to adjust your webserver."
-      echo -e "  See the nginx.conf in your new project."
+      echo -e "🌐 Nginx detected. You might need to adjust your webserver."
+      echo -e "   See the nginx.conf in your new project."
       echo " "
     fi
 
     echo " "
     echo -e "✅ ${GREEN}The Force is strong with this one!"
-    echo -e "  The Charm PHP Framework has been successfully installed.${RESET}"
+    echo -e "   The Charm PHP Framework has been successfully installed.${RESET}"
     echo " "
     echo -e "💻 Your journey begins! Access ${GREEN}https://localhost/path/to/$1${RESET}"
-    echo -e "  to view a greeting from a galaxy far, far away."
+    echo -e "   to view a greeting from a galaxy far, far away."
     echo " "
     echo -e "📡 Alternatively, unleash the power of ${GREEN}bob serve${RESET}"
-    echo -e "  to create a local development environment accessible at"
-    echo -e "  ${GREEN}https://localhost:8000"${RESET}
+    echo -e "   to create a local development environment accessible at"
+    echo -e "   ${GREEN}https://localhost:8000"${RESET}
     echo " "
 
     exit 0
