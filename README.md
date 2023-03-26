@@ -91,6 +91,35 @@ bob cron:run
 Bob will take care of running the scheduled tasks, 
 just like R2-D2 maintaining the systems of an X-Wing fighter.
 
+### Self-update
+
+In a galaxy far, far away, tools need to stay up to date
+to support the Rebellion's cause. That's why Bob comes 
+with a built-in self-update feature. This handy function ensures 
+your toolkit remains in sync with the latest developments 
+and improvements, just like a well-maintained hyperdrive system.
+
+To access this self-update functionality, simply execute the following command:
+
+```sh
+bob self-update
+```
+
+Keep in mind that this command should only be used when Bob is 
+installed at /usr/local/bin/bob. This is the default location 
+for most installations, and the self-update feature is designed 
+to work seamlessly with it.
+
+When executed, the self-update command fetches the latest version 
+of the Bob script from the Charm Framework repository, 
+ensuring you're always equipped with the most recent tools and fixes. 
+This way, you can continue your quest to build exceptional 
+web applications and help the Rebellion triumph against the
+dark forces of outdated code and inefficient tools.
+
+Remember, a well-updated toolkit is a powerful ally. 
+Stay sharp and may the Force be with you!
+
 
 ## Conclusion
 
