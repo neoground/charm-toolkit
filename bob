@@ -77,7 +77,7 @@ and see what you can build! Let'\''s go!'
 
     # Install dependencies using Composer
     echo -e "Installing composer packages..."
-    composer install -nq
+    composer -n -q update
 
     # Update main config
     echo -e "Updating config..."
