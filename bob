@@ -185,8 +185,10 @@ if [ "$1" == "new" ]; then
     mkdir -p var/cache var/logs data app/Config/Environments
     chmod -R 0777 var/cache var/logs data
 
-    # Remove charm-wireframe git stuff
+    # Remove charm-wireframe git stuff and project specific files
     rm -Rf .git
+    rm LICENSE.md
+    rm README.md
 
     echo -ne "${GREEN}[OK]${RESET} Created directory structure     \n"
 
