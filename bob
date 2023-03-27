@@ -9,7 +9,6 @@
 RED="\033[31m"
 GREEN="\033[32m"
 YELLOW="\033[33m"
-MAGENTA="\033[35m"
 CYAN="\033[36m"
 RESET="\033[0m"
 
@@ -109,6 +108,8 @@ if [ "$1" == "self-update" ]; then
       # In case the download failed or the script is not executable
       echo -e "${RED}Update failed! The Force is not strong with this update...${RESET}"
     fi
+
+    exit 0
 fi
 
 # Dev server
@@ -134,6 +135,7 @@ if [ "$1" == "serve" ]; then
 
   # Execute the PHP built-in server
   "$PHP_PATH" -S "$host:$port"
+  exit 0
 fi
 
 # Create new project

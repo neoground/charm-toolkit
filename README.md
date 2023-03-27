@@ -154,7 +154,7 @@ bob self-update
 ```
 
 Keep in mind that this command should only be used when Bob is 
-installed at /usr/local/bin/bob. This is the default location 
+installed at `/usr/local/bin/bob`. This is the default location 
 for most installations, and the self-update feature is designed 
 to work seamlessly with it.
 
