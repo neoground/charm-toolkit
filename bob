@@ -189,6 +189,8 @@ if [ "$1" == "new" ]; then
     rm -Rf .git
     rm LICENSE.md
     rm README.md
+    mv README-project.md README.md
+    sed -i "s/PROJNAME/$2/g" README.md
 
     echo -ne "${GREEN}[OK]${RESET} Created directory structure     \n"
 
