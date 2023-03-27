@@ -126,9 +126,9 @@ if [ "$1" == "serve" ]; then
   port="8000"
 
   # Check the number of arguments
-  if [ "$#" -eq 1 ]; then
+  if [ "$#" -eq 2 ]; then
       host="$2"
-  elif [ "$#" -eq 2 ]; then
+  elif [ "$#" -eq 3 ]; then
       host="$2"
       port="$3"
   fi
