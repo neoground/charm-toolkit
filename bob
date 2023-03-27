@@ -154,7 +154,7 @@ if [ "$1" == "new" ]; then
     echo -e "complex business logic."
     echo " "
     echo -e "Get started with the Charm PHP Framework today"
-    echo -e "and see what you can build! Let's go!'"
+    echo -e "and see what you can build! Let's go!"
 
     echo " "
     echo " "
