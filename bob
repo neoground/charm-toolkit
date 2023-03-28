@@ -208,7 +208,8 @@ if [ "$1" == "new" ]; then
     # Replace composer.json + Readme with minimal template
     rm composer.json
     mv composer-project.json composer.json
-    sed -i "s/PROJNAME/$2/g" composer.json
+    namelowercase=${$2,,}
+    sed -i "s/PROJNAME/$namelowercase\/app/g" composer.json
 
     rm README.md
     mv README-project.md README.md
