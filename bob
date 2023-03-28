@@ -208,7 +208,7 @@ if [ "$1" == "new" ]; then
     # Replace composer.json + Readme with minimal template
     rm composer.json
     mv composer-project.json composer.json
-    sed -i "s/PROJNAME/$2/g" README.md
+    sed -i "s/PROJNAME/$2/g" composer.json
 
     rm README.md
     mv README-project.md README.md
@@ -217,7 +217,7 @@ if [ "$1" == "new" ]; then
     # Remove charm-wireframe git stuff and project specific files
     rm -Rf .git
     rm LICENSE.md
-    
+
     echo -ne "${GREEN}[OK]${RESET} Updated config     \n"
 
     echo " "
