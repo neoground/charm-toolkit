@@ -7,12 +7,12 @@ and access console commands of your projects easily.
 
 In a galaxy not so far away, Bob (short for Binary Operations Butler) 
 was created to serve as the ultimate command-line companion for 
-Charm Framework developers. Bob needs PHP 8.0 or above.
+Charm Framework developers. Bob needs PHP 8.1 or above.
 It's so easy to use, even a Wookiee could do it!
 
 Requirements:
 
-- PHP 8.0 or above
+- PHP 8.1 or above
 - Composer available in `PATH`
 
 
@@ -20,7 +20,7 @@ Requirements:
 
 To begin your epic journey with Bob, just follow these simple steps:
 
-1. Ensure that you have PHP 8.0 or above and Composer installed and available in your system's `PATH`.
+1. Ensure that you have PHP 8.1 or above and Composer installed and available in your system's `PATH`.
 2. Download `bob` and make `bob` executable:
     ```sh
    curl -fSsL -o bob https://raw.githubusercontent.com/neoground/charm-toolkit/main/bob && chmod +x bob
