@@ -1,5 +1,7 @@
 # The Bob Toolkit: Universal Charm Framework Manager
 
+![Header Banner](https://neoground.com/data/projects/charm/assets/banner-bob.jpg)
+
 Welcome to the Bob Toolkit, your one-stop-shop for managing 
 your [Charm Framework](https://github.com/neoground/charm) projects like a pro! 
 With just a few keystrokes, Bob can help you create new projects
